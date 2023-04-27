@@ -32,7 +32,7 @@ function Hire() {
     event.preventDefault();
 
     try {
-      await axios.post("http://localhost:3001/api/contact", { enterprise, email, message });
+      await axios.post("/api/contact", { enterprise, email, message });
       console.log("Message sent successfully!");
       // Ajouter une logique pour afficher un message de succès à l'utilisateur
     } catch (error) {
