@@ -18,7 +18,7 @@ function Footer({ content }) {
     <MKBox component="footer">
       <Container>
         <Grid container spacing={3}>
-          <Grid item xs={12} md={6} sx={{ ml: "auto", mb: 3 }}>
+          <Grid item xs={8} md={6} sx={{ ml: "auto", mb: 3 }}>
             <MKBox display="flex" alignItems="center" mt={3}>
               {socials.map(({ icon, link }, key) => (
                 <MKTypography

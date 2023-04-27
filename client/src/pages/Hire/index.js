@@ -17,6 +17,8 @@ import Footer from "components/Footers";
 import routes from "routes/routes";
 import footerRoutes from "routes/footer.routes";
 
+import axios from "axios";
+
 // Image
 import bgImage from "assets/images/hire.png";
 
@@ -29,14 +31,14 @@ function Hire() {
     console.log(enterprise, email, message);
     event.preventDefault();
 
-    // try {
-    //   await axios.post("/api/contact", { name, email, message });
-    //   console.log("Message sent successfully!");
-    //   // Ajouter une logique pour afficher un message de succès à l'utilisateur
-    // } catch (error) {
-    //   console.log("Error sending message:", error);
-    //   // Ajouter une logique pour afficher un message d'erreur à l'utilisateur
-    // }
+    try {
+      await axios.post("http://localhost:3001/api/contact", { enterprise, email, message });
+      console.log("Message sent successfully!");
+      // Ajouter une logique pour afficher un message de succès à l'utilisateur
+    } catch (error) {
+      console.log("Error sending message:", error);
+      // Ajouter une logique pour afficher un message d'erreur à l'utilisateur
+    }
   };
 
   return (
