@@ -7,7 +7,7 @@ import { ContactDTO } from "./dto/contact.dto";
 export class ContactService {
   constructor(
     private readonly mailerService: MailerService,
-    private readonly configService: ConfigService
+    private readonly configService: ConfigService,
   ) {}
 
   async sendEmail(contactDto: ContactDTO): Promise<boolean> {
