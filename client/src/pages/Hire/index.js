@@ -8,6 +8,7 @@ import MKBox from "components/MKBox";
 import MKInput from "components/MKInput";
 import MKButton from "components/MKButton";
 import MKTypography from "components/MKTypography";
+import MKAlert from "components/MKAlert";
 
 // Material Kit 2 React examples
 import Navbar from "components/Navbars";
@@ -26,18 +27,19 @@ function Hire() {
   const [enterprise, setEnterprise] = useState("");
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
+  const [success, setSuccess] = useState("");
+  const [error, setError] = useState("");
 
   const handleSubmit = async (event) => {
-    console.log(enterprise, email, message);
     event.preventDefault();
 
     try {
-      await axios.post("/api/contact", { enterprise, email, message });
-      console.log("Message sent successfully!");
-      // Ajouter une logique pour afficher un message de succès à l'utilisateur
+      await axios.post("http://localhost:8080/api/contact", { enterprise, email, message });
+      setSuccess(true);
+      setTimeout(() => setSuccess(false), 3000);
     } catch (error) {
-      console.log("Error sending message:", error);
-      // Ajouter une logique pour afficher un message d'erreur à l'utilisateur
+      setError(true);
+      setTimeout(() => setError(false), 3000);
     }
   };
 
@@ -133,6 +135,16 @@ function Hire() {
                     />
                   </Grid>
                 </Grid>
+                {success && (
+                  <Grid item xs={12}>
+                    <MKAlert color="success">Votre message a été envoyer merci !</MKAlert>
+                  </Grid>
+                )}
+                {error && (
+                  <Grid item xs={12}>
+                    <MKAlert color="error">Une erreur est survenue</MKAlert>
+                  </Grid>
+                )}
                 <Grid container item justifyContent="center" xs={12} mt={5} mb={2}>
                   <MKButton type="submit" variant="gradient" color="info" onClick={handleSubmit}>
                     Envoyez !
